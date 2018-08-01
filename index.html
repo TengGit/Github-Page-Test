@@ -1,5 +1,19 @@
 <html>
 <head>
+<script type="text/javascript">
+function go() {
+	alert("Err... I have reminded you not to click me.");
+	go = function() {
+		alert("Do NOT click me!!!");
+		go = function() {
+			alert("This is the third warning.\nIf you click me again, then you'll get a REALLY bad result.");
+			go = function() {
+				close();
+			}
+		}
+	}
+}
+</script>
 <title>
 Github Page Test
 </title>
@@ -7,5 +21,6 @@ Github Page Test
 <body>
 <h2>Github Page Test</h2>
 <p>Hello, Github Page! This is my first Github page.</p>
+<button id="Button-Go" onclick="go()">Do not click me!</button>
 </body>
 </html>
