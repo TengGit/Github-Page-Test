@@ -1,18 +1,22 @@
 <html>
 <head>
 <script type="text/javascript">
+var t = 1;
 function go() {
+	setTimeout("go" + t.toString() + "()", 0);
+	t++;
+}
+function go1() {
 	alert("Err... I have reminded you not to click me.");
-	go = function() {
-		alert("Do NOT click me!!!");
-		go = function() {
-			alert("This is the third warning.\nIf you click me again, then you'll get a REALLY bad result.");
-			go = function() {
-				document.write("");
-				//close();
-			}
-		}
-	}
+}
+function go2() {
+	alert("Do NOT click me!!!");
+}
+function go3() {
+	alert("This is the third warning.\nIf you click me again, then you'll get a REALLY bad result.");
+}
+function go4() {
+	document.write("");
 }
 </script>
 <title>
