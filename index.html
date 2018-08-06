@@ -6,7 +6,7 @@
 var t = 1;
 var size = 16;
 var maxSize = 50;
-var minSize = 4;
+var minSize = 10;
 function I(x) { return document.getElementById(x); }
 function T(x) { return document.getElementsByTagName(x); }
 function removeNode(x) { return x.parentNode.removeChild(x); }
@@ -55,6 +55,15 @@ function changeFont() {
 	}
 	elem = null;
 }
+function download() {
+	var temp = document.createElement("a");
+	temp.style.display = "none";
+	temp.setAttribute("href", "data:text/plain;charset=utf-8," +
+		encodeURIComponent(I("html-editor").value));
+	temp.setAttribute("download", "page.html");
+	temp.click();
+	temp = null;
+}
 </script>
 <style type="text/css">
 #html-editor {
@@ -68,6 +77,15 @@ function changeFont() {
 	width: 100%;
 	height: 100%;
 	background-color: white;
+}
+.toolbar button {
+	display: inline;
+}
+.toolbar button:hover {
+	background-color: #cccccc;
+}
+.toolbar button:active {
+	background-color: #666666;
 }
 </style>
 <title>
@@ -91,11 +109,12 @@ Github Page Test
 </td>
 <td style="width: 50%; height: 400px;"><iframe id="test-result"></iframe></td>
 </tr>
-<tr><td style="width: 50%; text-align: right">
+<tr><td class="toolbar" style="width: 50%; text-align: right">
 <button onclick="changeFont()" id="changeFont" style="font-family: 'Courier New', Courier, monospace;">Courier</button>
 <button onclick="bigger()"><img src="img/Aplus.png" alt="A^"/></button>
 <button onclick="smaller()"><img src="img/Aminus.png" alt="Av"/></button>
 <button onclick="updateResult()">View result!</button>
+<button onclick="download()">Download!</button>
 </td></tr>
 </table>
 </body>
