@@ -1,7 +1,12 @@
+<!DOCTYPE html>
 <html>
 <head>
 <script type="text/javascript">
 var t = 1;
+function I(x) { return document.getElementById(x); }
+function T(x) { return document.getElementsByTagName(x); }
+function removeNode(x) { return x.parentNode.removeChild(x); }
+
 function go() {
 	setTimeout("go" + t.toString() + "()", 0);
 	t++;
@@ -18,7 +23,26 @@ function go3() {
 function go4() {
 	document.write("");
 }
+function updateResult() {
+	var doc = I("test-result").contentDocument.open();
+	doc.write(I("html-editor").value);
+	doc.close();
+	doc = null;
+}
 </script>
+<style type="text/css">
+#html-editor {
+	width: 100%;
+	height: 100%;
+	font-family: Consolas;
+	font-size: 16px;
+}
+
+#test-result {
+	width: 100%;
+	height: 100%;
+}
+</style>
 <title>
 Github Page Test
 </title>
@@ -27,5 +51,12 @@ Github Page Test
 <h2>Github Page Test</h2>
 <p>Hello, Github Page! This is my first Github page.</p>
 <button id="Button-Go" onclick="go()">Do not click me!</button>
+<table style="width: 100%;">
+<tr>
+<td style="width: 50%; height: 400px;"><textarea id="html-editor"></textarea></td>
+<td style="width: 50%; height: 400px;"><iframe id="test-result"></iframe></td>
+</tr>
+<tr><td style="width: 50%; text-align: right"><button onclick="updateResult()">View result!</button></td></tr>
+</table>
 </body>
 </html>
