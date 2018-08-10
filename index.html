@@ -2,6 +2,19 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/style.css" />
+<link rel="stylesheet" type="text/css" href="/instantMessage.css" />
+<script src="/instantMessage.js" type="text/javascript"></script>
+<style type="text/css">
+.msg-warn1 {
+	background-color: #996666;
+}
+.msg-warn2 {
+	background-color: #cc6666;
+}
+.msg-warn3 {
+	background-color: #cc3333;
+}
+</style>
 <script type="text/javascript">
 var t = 1;
 var size = 16;
@@ -9,25 +22,42 @@ var maxSize = 50;
 var minSize = 10;
 var cookieEditedName = "lastEditedText";
 
+var mc = new MessageContainer();
+
 function I(x) { return document.getElementById(x); }
 function T(x) { return document.getElementsByTagName(x); }
 function removeNode(x) { return x.parentNode.removeChild(x); }
 
+function ready() {
+	document.body.appendChild(mc.element);
+	checkCookie();
+}
 function go() {
 	setTimeout("go" + t.toString() + "()", 0);
 	t++;
 }
 function go1() {
-	alert("Err... I have reminded you not to click me.");
+	mc.createMessage({
+		title: "Notice",
+		content: "Err... I have reminded you not to click me.",
+		stayTimeout: 5000,
+	}).element.className += " msg-warn1";
 }
 function go2() {
-	alert("Do NOT click me!!!");
+	mc.createMessage({
+		title: "Warning",
+		content: "Do NOT click me!!!",
+		stayTimeout: 3000,
+	}).element.className += " msg-warn2";
 }
 function go3() {
-	alert("This is the third warning.\nIf you click me again, then you'll get a REALLY bad result.");
+	mc.createMessage({
+		title: "Warning",
+		content: "This is the third warning.\nIf you click me again, then you'll get a REALLY bad result.",
+	}).element.className += " msg-warn3";
 }
 function go4() {
-	document.write("");
+	document.write("<html><body></body></html>");
 }
 
 function updateResult() {
@@ -126,7 +156,7 @@ function saveContent() {
 Github Page Test
 </title>
 </head>
-<body onload="checkCookie()" onunload="saveContent()">
+<body onload="ready()" onunload="saveContent()">
 <h2>Github Page Test</h2>
 <p>Hello, Github Page! This is my first Github page.</p>
 <button id="Button-Go" onclick="go()">Do not click me!</button>
