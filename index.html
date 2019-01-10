@@ -127,6 +127,13 @@ function saveContent() {
 		setCookie(cookieEditedName, "");
 	}
 }
+function do_vib() {
+    navigator.vibrate([
+        100,100,100,100,100, 300,
+        300,100,300,100,300, 300,
+        100,100,100,100,100
+    ]);
+}
 </script>
 <style type="text/css">
 #html-editor {
@@ -160,6 +167,7 @@ Github Page Test
 <h2>Github Page Test</h2>
 <p>Hello, Github Page! This is my first Github page.</p>
 <button id="Button-Go" onclick="go()">Do not click me!</button>
+<button id="Button-Vibrate" onclick="do_vib()">Vibrate SOS Morse</button>
 <table style="width: 100%;">
 <tr>
 <td style="width: 50%; height: 400px;">
